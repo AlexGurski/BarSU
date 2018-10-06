@@ -1,0 +1,55 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Бронирование столиков</title>
+    <link rel="stylesheet" type="text/css" href="../public/css/armor.css">
+      <link rel="shortcut icon" href="../public/image/ico.png" type="image/x-icon">
+</head>
+
+<body>
+<script src="../public/js/armor.js"></script>
+
+
+ <% include blocks/header.ejs %>
+       <div class='mainReserv'>
+         <div class = left>
+         </div>
+   <div class = 'center' id = 'center'>
+
+      <form action="/armor" method="post" id='form'>
+
+        <input  type="text" name="_id" id="newId" value="ss">
+
+       <p> Выберите дату:  </p>
+        <input type="date" name="date" id="mydate" value="2018-09-03"
+         max="2018-10-03" min="2018-09-03"  > <splan id=free></splan>
+
+
+  <p> <label for="date">Имя</label></p>
+  <input  type="text" name="name" id="title"
+
+<br> <p> <label for="date">Номер телефона</label</p>
+<br>  <input  type="text" name="telephone" id="title" >
+
+<p>  <label for="date">Количество столиков</label><br></p>
+  <input  type="text" name="table" id="title" ><br>
+
+<p>  <label for="date">Время</label><br></p>
+  <input  type="text" name="time" id="title" ><br>
+
+<p>  <label for="text">Комментарий</label><br></p>
+  <textarea name="text" id="content" cols="30" rows="10"></textarea><br>
+    <button id = 'button'>Отправить данные</button>
+       </form>
+   </div>
+         <div class = right>
+         </div>
+
+   </div>
+
+
+</body>
+</html>

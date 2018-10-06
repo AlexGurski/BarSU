@@ -1,0 +1,49 @@
+
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>Mr. Pizza</title>
+
+<link rel="stylesheet" type="text/css" href="../public/css/order.css">
+  <script src="../public/js/order.js"></script>
+  <link rel="shortcut icon" href="../public/image/ico.png" type="image/x-icon">
+</head>
+        <body>
+
+<% include blocks/header.ejs %>
+
+<div class='mainReserv'>
+
+  <div class = left>
+  </div>
+
+    <div class = 'center' id = 'center'>
+          <div class="centerPostOrder">
+          </div>
+          <div class="centerPostOrderBot" id = 'centerPostOrderBot'>
+            <div class = 'buyerName'>
+                <p>  Введите ваше имя</p><br>
+                  <input type = 'text' class = 'inputBox' id = 'nameOrder'><br>
+                <p>  Введите ваш номер телефона</p><br>
+                  <input type = 'text' class = 'inputBox' id = 'telephoneOrder'><br>
+                  <p>  Введите ваш адрес</p> <input type="checkbox" id="one" onchange="fun1()"> Без доставки <br>
+                    <input type = 'text' class = 'inputBox' id = 'adressOrder'><br>
+                    <p>  Комментарий</p><br>
+                      <input type = 'text' class = 'inputBox' id = 'commentOrder'><br>
+            </div>
+            <div class="buyerPrice">
+              <div id='orderCost'>  Стоимость заказа  </div>
+              <div id='deliveryCost'> Стоимость доставки  </div>
+              <div id='finalCost'> Общая стоимость </div>
+
+
+          <div id ='buttonOrder'>Оформить заказ</div>
+            </div>
+          </div>
+      </div>
+        <div class = right>
+        </div>
+</div>
+      </body>
+</html>

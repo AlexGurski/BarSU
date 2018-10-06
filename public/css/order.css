@@ -1,0 +1,197 @@
+*{
+  color:yellow;
+}
+.centerPostOrder{
+  display: flex;
+  flex-direction: column;
+  color: black;
+  overflow: auto;
+  width: 100%;
+  height: 55%;
+
+
+}
+.centerPostOrderBot{
+  opacity: 0;
+  background-color: black;
+  display: flex;
+  flex-direction: row;
+  color: black;
+  overflow: auto;
+  width: 100%;
+  height: 45%;
+  border-radius: 25px 25px  0px 0px ;
+  justify-content: space-around;
+  font-family: 'left', serif;
+  font-size:20px;
+
+}
+.centerPostOrder::-webkit-scrollbar {width:0px;}
+
+.orderCenter{
+  border: 1px dashed red;
+  min-height: 180px;
+	width: 100%;
+	margin-bottom:  10px;
+	background-color: black;
+
+  display: flex;
+border-radius: 25px;
+
+
+}
+.frontImage{
+  border-radius: 25px  0px 0px 25px;
+  background-size: cover;
+	background-position: center;
+  max-width: 250px;
+  min-width: 250px;
+  flex-grow:1;
+}
+
+.textCenter {
+flex-wrap: wrap;
+display: flex;
+flex-grow:6;
+
+}
+.deleteOrder{
+  padding: 5px;
+}
+.nameMenuOrder, .priceOrder, .kindOrder,  .deleteOrder, .weightOrder{
+
+color:yellow;
+}
+.nameMenuOrder{
+  margin-top: 5px;
+  font-size: 150%;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+.weightOrder{
+  font-size: 150%;
+}
+.kindOrder{
+  margin-top: 20px;
+  flex-grow: 1;
+  font-size: 130%;
+}
+.priceOrder{
+  margin-top: 5px;
+  font-size: 150%;
+}
+.addCounter{
+	cursor: pointer;
+	border-radius: 8px;
+	padding: 5px;
+	display: flex;
+
+	justify-content: space-around;
+	vertical-align: middle;
+	margin:10px 20% 0 20%;
+  color:yellow;
+}
+.plusCounter, .minusCounter, .colCounter{
+  margin: 2px;
+  padding: 10px;
+  font-size: 250%;
+  text-align: center;
+
+  color:yellow;
+  font-weight: 900;
+  border-radius: 10px;
+}
+
+.plusCounter:hover, .minusCounter:hover, .colCounter:hover{
+  color:black;
+  background-color: yellow;
+}
+.deleteCart{
+	cursor: pointer;
+	border-radius: 2px;
+	padding: 5px;
+	display: flex;
+
+	justify-content: space-around;
+	vertical-align: middle;
+	margin:10px 20% 0 20%;
+  color:yellow;
+}
+.deleteCart:hover {
+	background-color: yellow;
+}
+
+.deleteCart:hover .deleteOrder{
+  color:black;
+}
+img{
+	cursor: pointer;
+
+}
+
+.textCenter1{
+  margin-left: 1em;
+  flex-grow: 5;
+  flex-basis:0px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+.textCenter2{
+  max-width: 250px;
+  min-width: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: column;
+
+  flex-grow: 1;
+}
+.inputBox{
+color: #282828;
+border: 1px solid #fcb800;
+border-radius: 5px;
+padding: 5px;
+width: 56%;
+margin-right: 3%;
+font-family: 'left', serif;
+font-size:20px;
+}
+
+.centerPostOrderBot p, input{
+  display: inline-block;
+  margin-left: 2em;
+  margin-top: 5px;
+border-radius: 5px;
+}
+.buyerName{
+  flex-shrink: 2;
+  flex-grow: 2;
+margin-top: 2em;
+  flex-basis:60%;
+}
+.buyerPrice{
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 1;
+  flex-grow: 1;
+margin-top: 2em;
+  flex-basis:40%;
+}
+
+#buttonOrder{
+  margin: 1em 3em 0.1em 0.1em;
+
+  border: 2px dotted black;
+  background-color: yellow;
+  color:black;
+  padding: 1em;
+  text-align: center;
+  cursor: pointer;
+}
+#buttonOrder:hover{
+  border: 2px dotted yellow;
+  background-color: black;
+  color:  yellow;
+}

@@ -1,0 +1,78 @@
+html {
+	min-height: 100%;
+	font-family: "Open Sans", sans-serif;
+	font-weight: 300;
+	color: #FFF;
+	background-color: black;
+
+}
+body, html {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.all{
+	display: flex;
+}
+.order {
+  border: 1px solid red;
+}
+.adminOrder{
+	border: 2px dotted white;
+	width: 33%;
+	height: 100vh;
+	vertical-align: top;
+	overflow-y: scroll;
+	color:black;
+}
+
+.addMenu{
+	border: 2px dotted white;
+	vertical-align: top;
+		height: 50%;
+}
+.adminArmor{
+	border: 2px dotted white;
+	width: 33%;
+	vertical-align: top;
+
+}
+table{
+	background: white; /* Цвет фона таблицы */
+    color: white;
+}
+TD, TH {
+	 background: maroon; /* Цвет фона ячеек */
+	 padding: 5px; /* Поля вокруг текста */
+	}
+
+
+
+.fullArmor{
+	margin-top: 10px;
+	border:2px solid grey;
+	background-color: black;
+}
+.adminCenterMenu{
+	display: flex;
+		width: 33%;
+		height: 100vh;
+		flex-direction: column;
+}
+.editMenu{
+	border:2px dotted red;
+	height: 50vh;
+	width: 100%;
+	overflow: auto;
+}
+
+.menuStatus{
+	padding-top: 5px;
+	padding-bottom: 5px;
+	cursor: pointer;
+}
+.menuStatus:hover{
+	color:grey;
+}

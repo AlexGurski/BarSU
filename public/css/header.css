@@ -1,0 +1,177 @@
+@font-face {
+ font-family: fontAll; /* Гарнитура шрифта */
+ src: url("../fonts/mainFont.otf"); /* Путь к файлу со шрифтом */
+}
+@font-face {
+ font-family: left; /* Гарнитура шрифта */
+ src: url("../fonts/left.ttf"); /* Путь к файлу со шрифтом */
+}
+@font-face {
+ font-family: menuDish; /* Гарнитура шрифта */
+ src: url("../fonts/menuDish.ttf"); /* Путь к файлу со шрифтом */
+}
+@font-face {
+ font-family: Script; /* Гарнитура шрифта */
+ src: url("../fonts/Script.ttf"); /* Путь к файлу со шрифтом */
+}
+
+@font-face {
+ font-family: brush; /* Гарнитура шрифта */
+ src: url("../fonts/brush.ttf"); /* Путь к файлу со шрифтом */
+}
+
+*{
+  margin: 0;
+  padding: 0;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+html {
+	font-family: 'fontAll', serif;
+  background-color: black;
+  overflow: hidden;
+  background-image: url("../image/bgrepeat1.jpg");
+}
+
+#goToAdmin{
+  height: 20px;
+  width: 20px;
+  background-image: url("../image/salat.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.mainReserv{
+display: flex;
+align-items: stretch;
+justify-content: center;
+}
+
+.left{
+	color: gold;
+	flex-grow: 0;
+  flex-basis:10%;
+  background-image: url("../image/muka.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+.right{
+  color: gold;
+	flex-basis:10%;
+	flex-grow:0;
+  background-image: url("../image/kolos.png");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+.center {
+
+	width: 0;
+  height: 90vh;
+		flex-grow:10;
+		display: flex;
+		overflow: auto;
+		flex-wrap: wrap;
+		justify-content: center;
+}
+
+.center::-webkit-scrollbar {width:0px;}
+
+.allHeader{
+  display: flex;
+  height: 10vh;
+  width: 100vw;
+}
+
+.leftHeader a{
+  display: block;
+  height: 100%;
+  width: 100%;
+}
+.leftHeader{
+  display: block;
+  background-image: url("../image/logo.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+
+  flex-basis:10%;
+  flex-grow:0;
+}
+
+.rightHeader{
+
+  	flex-basis:10%;
+    	flex-grow:0;
+}
+.header{
+  flex-grow:10;
+	display: flex;
+	justify-content: center;
+	flex-wrap: wrap;
+
+}
+
+.header ul {
+    position: absolute;
+    transform: translate(-0%, -0%);
+    margin-top:  calc(5vh - 1em);
+    padding: 0;
+    display: flex;
+		justify-content: space-around;
+}
+.header ul li {
+    position: relative;
+    list-style: none;
+}
+.header ul li a {
+    position: relative;
+    width: 150px;
+    height: 40px;
+    display: block;
+    color: yellow;
+    line-height: 40px;
+    text-align: center;
+    text-decoration: none;
+  text-transform: uppercase;
+    transition: .5s;
+    box-sizing: border-box;
+}
+.header ul li a span {
+    position: absolute;
+    width: 25%;
+    height: 100%;
+    background-color: yellow;
+    z-index: -1;
+    transform-origin: top;
+    transform: scaleY(0);
+    transition: transform .5s;
+}
+.header ul li a:hover {
+    color: black;
+    text-decoration: none;
+
+}
+.header ul li a:hover span {
+    transform-origin: bottom;
+    transform: scaleY(1);
+}
+.header ul li a span:nth-child(1) {
+    left: 0;
+    transition-delay: 0s;
+}
+.header ul li a span:nth-child(2) {
+    left: 25%;
+    transition-delay: 0.15s;
+}
+.header ul li a span:nth-child(3) {
+    left: 50%;
+    transition-delay: 0.3s;
+}
+.header ul li a span:nth-child(4) {
+    left: 75%;
+    transition-delay: 0.45s;
+}

@@ -1,0 +1,75 @@
+
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <title>la Villa</title>
+    <link rel="shortcut icon" href="../public/image/ico.png" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="../public/css/menu.css">
+  <link rel="stylesheet" type="text/css" href="../public/css/styleAnimation.css">
+  </head>
+
+  <body>
+
+<div class="notification-bar">
+    <input id="hide" type="radio" name="bar" value="hide" checked="checked">
+    <input id="show" type="radio" name="bar" value="show" >
+
+    <label for="hide">Показать</label>
+    <label for="show">Скрыть</label>
+
+    <div  id = 'notification-text' class="notification-text"></div>
+</div>
+    <% include blocks/header.ejs %>
+    <script src="../public/js/menu.js " defer></script>
+
+  </div>
+
+<div class='mainReserv'>
+
+        <div class = left>
+
+              <span class="knopka"><a>Наверх</a></span>
+        </div>
+
+  <div class = 'center' id = 'center'>
+    <div class = 'centerMenu'>
+
+            <div class='pizzaMenu' >
+                <div class = 'textMenu'> Пиццы
+                </div>
+              </div>
+
+            <div class='hotMenu' >
+                <div class = 'textMenu'> Горячие блюда
+                </div>
+            </div>
+
+            <div class='coldMenu' >
+                <div class = 'textMenu'> Холодные закуски
+              </div>
+            </div>
+
+            <div class='desertMenu' >
+                <div class = 'textMenu'> Десерты
+                </div>
+            </div>
+
+            <div class='drinkMenu' >
+                <div class = 'textMenu'> Напитки
+                </div>
+            </div>
+
+            <div class='otherMenu' >
+                <div class = 'textMenu'> Другое
+                </div>
+            </div>
+          </div>
+  </div>
+
+        <div class = right>
+        </div>
+</div>
+  </body>
+
+</html>
