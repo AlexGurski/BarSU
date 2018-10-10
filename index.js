@@ -268,10 +268,7 @@ app.get('/orderItems', (req,res) => {
 
 
 
-                   app.listen(process.env.PORT,() ={
-                     console.log('start!!!')
-                   })
-                    /*  app.listen(3000, () => {
+
+                    app.listen(process.env.PORT || 1488, () => {
                         console.log('--//API  start 3000--//')
                       })﻿;
-*/
