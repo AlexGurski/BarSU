@@ -13,7 +13,7 @@ app.use( bodyParser.json() )
 app.use('/public', express.static('public'));
 const mass = [0];
 
-    app.get('/', (req, res) => {
+    app.get('https://lavilla1488.herokuapp.com/', (req, res) => {
             res.render ('index.ejs');
           } );
 
