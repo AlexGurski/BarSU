@@ -1,46 +1,59 @@
 var items = [];
 var addCart = [];
 
-window.onload = () => {
-      create(items);
+fetch('/sendMenu')
+                .then(function(response) {
+                  return response.json();
+                 })
+                 .then(menu => {
+                     items = menu;
+                     return items
+                 }).then(items => {
+                   console.log(items)
+                   create(items);
+                   window.onload = () => {
 
-        for(var i=0; i < addCart.length; i++){
-          addCart[i].onclick = add;
-      }
+                           for(var i=0; i < addCart.length; i++){
+                             addCart[i].onclick = add;
+                         }
 
-      document.getElementsByClassName('center')[0].onscroll = magic;
-        let btn = document.querySelector('.knopka');
-          btn.onclick = function () {
-        	   document.getElementsByClassName('center')[0].scrollTo(0,0);
-          };
+                         document.getElementsByClassName('center')[0].onscroll = magic;
+                           let btn = document.querySelector('.knopka');
+                             btn.onclick = function () {
+                           	   document.getElementsByClassName('center')[0].scrollTo(0,0);
+                             };
 
-      document.getElementsByClassName('pizzaMenu')[0].onclick = ()=>{
-        filter(document.getElementsByClassName('ItemsCenter'),'Пицца')
-      };
-      document.getElementsByClassName('hotMenu')[0].onclick = ()=>{
-        filter(document.getElementsByClassName('ItemsCenter'),'Горячее блюдо', 'Гриль')
-      };
-      document.getElementsByClassName('drinkMenu')[0].onclick = ()=>{
-        filter(document.getElementsByClassName('ItemsCenter'),'Напиток','Крюшон','Кофе', 'Коктейль' ,'Напитки')
-      };
-      document.getElementsByClassName('coldMenu')[0].onclick = ()=>{
-        filter(document.getElementsByClassName('ItemsCenter'),'Закуски','Паста','Суп','Гарнир')
-      };
-      document.getElementsByClassName('otherMenu')[0].onclick = ()=>{
-        filter(document.getElementsByClassName('ItemsCenter'),'Другое','Соус')
-      };
-      document.getElementsByClassName('desertMenu')[0].onclick = ()=>{
-        filter(document.getElementsByClassName('ItemsCenter'),'Десерт')
-      };
+                         document.getElementsByClassName('pizzaMenu')[0].onclick = ()=>{
+                           filter(document.getElementsByClassName('ItemsCenter'),'Пицца')
+                         };
+                         document.getElementsByClassName('hotMenu')[0].onclick = ()=>{
+                           filter(document.getElementsByClassName('ItemsCenter'),'Горячее блюдо', 'Гриль')
+                         };
+                         document.getElementsByClassName('drinkMenu')[0].onclick = ()=>{
+                           filter(document.getElementsByClassName('ItemsCenter'),'Напиток','Крюшон','Кофе', 'Коктейль' ,'Напитки')
+                         };
+                         document.getElementsByClassName('coldMenu')[0].onclick = ()=>{
+                           filter(document.getElementsByClassName('ItemsCenter'),'Закуски','Паста','Суп','Гарнир')
+                         };
+                         document.getElementsByClassName('otherMenu')[0].onclick = ()=>{
+                           filter(document.getElementsByClassName('ItemsCenter'),'Другое','Соус')
+                         };
+                         document.getElementsByClassName('desertMenu')[0].onclick = ()=>{
+                           filter(document.getElementsByClassName('ItemsCenter'),'Десерт')
+                         };
 
-      function magic() {
-          if (  document.getElementsByClassName('center')[0].scrollTop > 120) {
-          btn.style.opacity = '0.9';
-          }
-            else { btn.style.opacity = '0'; }
+                         function magic() {
+                             if (  document.getElementsByClassName('center')[0].scrollTop > 120) {
+                             btn.style.opacity = '0.9';
+                             }
+                               else { btn.style.opacity = '0'; }
 
-      }
-}
+                         }
+                   }
+                 })
+
+
+
 
 function filter(item){
     for (var i=0;i<item.length;i++){
@@ -167,11 +180,3 @@ function url(item){
   if (item ==='Другое') ret = 'other'
   return ret;
 }
-
-fetch('/sendMenu')
-                .then(function(response) {
-                  return response.json();
-                 })
-                 .then(menu => {
-                     items = menu;
-                 })
