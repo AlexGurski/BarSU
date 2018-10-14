@@ -53,7 +53,7 @@ app.get('/admin/:id', (req,res) => {
 
 MongoClient.connect(url, (err, client) => {
 assert.equal(null, err);
-const db = client.db("pizza");
+const db = client.db("heroku_m3c7r3j8");
 const collection =db.collection('order');
   app.post("/updateStatusOrder", (req,res) => {
         const  event = req.body;
@@ -137,7 +137,7 @@ app.get('/admin', (req,res) => {
 
 MongoClient.connect(url, (err, client) => {
 assert.equal(null, err);
-const db = client.db("pizza");
+const db = client.db("heroku_m3c7r3j8");
 const collection =db.collection('order');
   app.post("/order", (req,res) => {
 
@@ -175,7 +175,7 @@ app.get('/orderItems', (req,res) => {
 
     MongoClient.connect(url, (err, client) => {
     assert.equal(null, err);
-    const db = client.db("pizza");
+    const db = client.db("heroku_m3c7r3j8");
     const collection =db.collection('event');
       app.post("/about/write", (req,res) => {
             const  event= { "date":req.body.date,
@@ -196,7 +196,7 @@ app.get('/orderItems', (req,res) => {
 
     MongoClient.connect(url, (err, client) => {
     assert.equal(null, err);
-    const db = client.db("pizza");
+    const db = client.db("heroku_m3c7r3j8");
     const collection =db.collection('armor');
       app.post("/armor", (req,res) => {
                 collection.insertOne(req.body,(err,result)=>{
@@ -241,7 +241,7 @@ app.get('/orderItems', (req,res) => {
 
               MongoClient.connect(url, (err, client) => {
               assert.equal(null, err);
-              const db = client.db("pizza");
+              const db = client.db("heroku_m3c7r3j8");
               const collection =db.collection('menu');
                 app.post("/admin", (req,res) => {
                       console.log(req.body)
@@ -253,7 +253,6 @@ app.get('/orderItems', (req,res) => {
                               kind:req.body.kind,
                               price:req.body.price,
                               weight:req.body.weight
-
                              }
                              ,{ upsert: true },
                              function(err, result){

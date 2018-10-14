@@ -2,9 +2,9 @@
   "name": "pizzarinho",
   "version": "1.0.0",
   "description": "",
-  "main": "pizza.js",
+  "main": "index.js",
   "scripts": {
-    "start": "npm run build"
+    "start": "node index.js"
   },
   "author": "",
   "license": "ISC",
