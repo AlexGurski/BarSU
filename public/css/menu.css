@@ -8,6 +8,7 @@
 	 background-color: black;
 }
 
+
 .knopka {
 	opacity: 0;
   background-color: #eee;
@@ -79,17 +80,23 @@ img{
 	content: url('../image/addCartHover.png')
 }
 
-.centerMenu{
-	margin-top: 5%;
+.centerMenu {
 	background-color: black;
   flex-grow: 1;
   border:2px solid yellow;
-  width: 100vw;
   display: flex;
   border-radius: 15px;
-  justify-content: space-around;
-  flex-wrap: wrap;
+  justify-content: center;
+	flex-wrap: wrap;
+	width: 100%;
 }
+.tripleMenu{
+		justify-content:space-around;
+	  display: flex;
+	  flex-wrap: wrap;
+		flex-grow: 1;
+}
+
 .textMenu{
 	text-align: center;
 	display: block;

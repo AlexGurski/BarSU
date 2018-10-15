@@ -34,6 +34,7 @@ html {
   background-image: url("../image/bgrepeat1.jpg");
 }
 
+
 #goToAdmin{
   height: 20px;
   width: 20px;
@@ -68,6 +69,7 @@ justify-content: center;
   background-size: contain;
 }
 .center {
+
 	width: 0;
   height: 90vh;
 		flex-grow:10;
@@ -80,10 +82,22 @@ justify-content: center;
 .center::-webkit-scrollbar {width:0px;}
 
 .allHeader{
+  border: 2px solid red;
   display: flex;
-  height: 10vh;
+
+  min-height: 10vh;
+
   width: 100vw;
-  padding-bottom: 5%;
+}
+
+
+@media screen and (max-width: 620px) {
+.allHeader{
+    min-height: 20vh;
+}
+.center{
+  height: 80vh;
+}
 }
 
 .leftHeader a{
@@ -106,13 +120,18 @@ justify-content: center;
   	flex-basis:10%;
     	flex-grow:0;
 }
-.header{
 
+.header{
   flex-grow:10;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+}
 
+.doubleCenter{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
 .header ul {
@@ -131,7 +150,7 @@ justify-content: center;
 .header ul li a {
     position: relative;
     width: 150px;
-    height: 40px;
+
     display: block;
     color: yellow;
     line-height: 40px;
