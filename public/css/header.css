@@ -68,7 +68,6 @@ justify-content: center;
   background-size: contain;
 }
 .center {
-
 	width: 0;
   height: 90vh;
 		flex-grow:10;
@@ -84,6 +83,7 @@ justify-content: center;
   display: flex;
   height: 10vh;
   width: 100vw;
+  padding-bottom: 5%;
 }
 
 .leftHeader a{
@@ -103,11 +103,11 @@ justify-content: center;
 }
 
 .rightHeader{
-
   	flex-basis:10%;
     	flex-grow:0;
 }
 .header{
+
   flex-grow:10;
 	display: flex;
 	justify-content: center;
@@ -116,6 +116,7 @@ justify-content: center;
 }
 
 .header ul {
+    flex-wrap: wrap;
     position: absolute;
     transform: translate(-0%, -0%);
     margin-top:  calc(5vh - 1em);
@@ -136,7 +137,7 @@ justify-content: center;
     line-height: 40px;
     text-align: center;
     text-decoration: none;
-  text-transform: uppercase;
+    text-transform: uppercase;
     transition: .5s;
     box-sizing: border-box;
 }
@@ -153,7 +154,6 @@ justify-content: center;
 .header ul li a:hover {
     color: black;
     text-decoration: none;
-
 }
 .header ul li a:hover span {
     transform-origin: bottom;

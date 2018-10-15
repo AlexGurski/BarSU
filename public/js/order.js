@@ -16,7 +16,7 @@ async function getElementMenu(){
     let responseMenu = await fetch('/orderItems')
     let products = await responseMenu.json();
 
-    await new Promise((resolve, reject) => setTimeout(resolve, 200));
+    await new Promise((resolve, reject) => setTimeout(resolve, 0));
     await  console.log(products)
     await renderOrder(products);
     var itemOrder = products;

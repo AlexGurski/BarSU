@@ -5,7 +5,7 @@ async function getElementMenu(){
     let responseMenu = await fetch('/sendMenu')
     let products = await responseMenu.json();
     await   console.log(products)
-    await   new Promise((resolve, reject) => setTimeout(resolve, 100));
+    await   new Promise((resolve, reject) => setTimeout(resolve, 0));
     await   create(products);
 
     var   addCart = await document.getElementsByClassName('addCart');

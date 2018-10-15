@@ -5,7 +5,7 @@ async function getElementMenu(){
     let responseMenu = await fetch('/sendMenu')
     let products = await responseMenu.json();
     await   console.log(products)
-    await   new Promise((resolve, reject) => setTimeout(resolve, 100));
+    await   new Promise((resolve, reject) => setTimeout(resolve, 0));
     await   create(products);
 
     var   addCart = await document.getElementsByClassName('addCart');
@@ -17,20 +17,6 @@ async function getElementMenu(){
     items = products
     return items;
 }
-/*
-fetch('/sendMenu')
-                .then(function(response) {
-                    return response.json();
-                 })
-                   .then(menu => {
-                       items = menu;
-                       return items
-                   })
-                     .then(items => {
-                       console.log(items)
-                     })
-
-*/
 
 window.onload = () => {
   items =   getElementMenu();

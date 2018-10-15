@@ -80,6 +80,7 @@ img{
 }
 
 .centerMenu{
+	margin-top: 5%;
 	background-color: black;
   flex-grow: 1;
   border:2px solid yellow;
