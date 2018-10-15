@@ -5,13 +5,13 @@ const app = express();
 const MongoClient = require('mongodb').MongoClient;
 const assert = require('assert');
 
+
 const url = 'mongodb://alex:panik1993@ds127843.mlab.com:27843/heroku_m3c7r3j8';
 const dbName = 'heroku_m3c7r3j8';
 
 /*
 const url = 'mongodb://localhost:27017/';
-const dbName = 'pizza';
-
+const dbName = 'heroku_m3c7r3j8';
 */
 app.use( bodyParser.urlencoded( {extended:true} ) );
 app.use( bodyParser.json() )

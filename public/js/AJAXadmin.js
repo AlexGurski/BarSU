@@ -8,9 +8,11 @@ function OrderAdminMenu(){
 
   fetch('/sendMenu')
                   .then(function(response) {
+
                     return response.json();
                    })
                    .then(menu => {
+
                      let rezult = [];
                           for (let i=0;i<menu.length;i++){
                                 if (menu[i].name.toUpperCase().indexOf(document.getElementById("editMenu").value.toUpperCase())+ 1){

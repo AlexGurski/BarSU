@@ -10,9 +10,9 @@ async function getElementMenu(){
 
     var   addCart = await document.getElementsByClassName('addCart');
 
-    for(var i=0; i < addCart.length; i++){
-      addCart[i].onclick = add
-    }
+        for(var i=0; i < addCart.length; i++){
+          addCart[i].onclick = add
+        }
 
     items = products
     return items;
@@ -82,7 +82,7 @@ item[i].style.display = "block";
   }
 
 function add () {
-  
+
     for (var i=0;i<items.length;i++){
       if (this.id === items[i]._id){
         items[i].counter = 1;

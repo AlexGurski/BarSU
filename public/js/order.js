@@ -2,15 +2,15 @@ const monthNames = ["Январь", "Февраль", "Март", "Апрель"
   "Июль", "Август", "Сентябрь", "Октябрь", "Ноявбрь", "Декабрь"
 ];
 var post = [];
-let itemOrder = [];
+var itemOrder = [];
 let finalPrice = 0;
 let dostavkaPrice = 0;
 let postPrice = 0;
 let postOrder = {};
-let plusCounter =  document.getElementsByClassName('plusCounter');
-let minusCounter =  document.getElementsByClassName('minusCounter');
-let colCounter = document.getElementsByClassName('colCounter');
-let deleteItem = document.getElementsByClassName('deleteCart');
+var plusCounter =  document.getElementsByClassName('plusCounter');
+var minusCounter =  document.getElementsByClassName('minusCounter');
+var colCounter = document.getElementsByClassName('colCounter');
+var deleteItem = document.getElementsByClassName('deleteCart');
 
 async function getElementMenu(){
     let responseMenu = await fetch('/orderItems')
@@ -19,155 +19,129 @@ async function getElementMenu(){
     await new Promise((resolve, reject) => setTimeout(resolve, 200));
     await  console.log(products)
     await renderOrder(products);
+    var itemOrder = products;
+
+    var deleteItem = await document.getElementsByClassName('deleteCart');
+    var orderCost = document.getElementById('orderCost');
+    for (let i=0; i<deleteItem.length;i++){
+
+                         deleteItem[i].onclick = function(){
+                           console.log(this)
+                           if (this.id.substr(0,14)=== itemOrder[i]._id){
+                               var xhr = new XMLHttpRequest();
+                               xhr.open("POST", '/submitMenuDelete', true);
+                               xhr.setRequestHeader('Content-Type', 'application/json');
+                               xhr.send(JSON.stringify(itemOrder[i]));
+                               window.location.reload();
+                            }
+                         }
+      }
+
+      for (let i=0; i<plusCounter.length;i++){
+          plusCounter[i].onclick = function add(){
+              for (var i=0;i<itemOrder.length;i++){
+                  if (this.id.substr(0,14)=== itemOrder[i]._id){
+                  itemOrder[i].counter++;
+                  finalPrice +=  Number(itemOrder[i].price);
+                  orderCost.innerHTML = 'Стоимость заказа: ' + finalPrice.toFixed(2) + ' р.';
+                  colCounter[i].innerHTML = itemOrder[i].counter;
+
+                                  if ( ( finalPrice > 10 ) || (document.getElementById('adressOrder').value === 'la Villa') ) {
+
+                                    dostavkaPrice = 0;
+                                    postPrice = dostavkaPrice + finalPrice;
+                                    document.getElementById('deliveryCost').innerHTML = 'Стоимость доставки: ' +  dostavkaPrice+ ' р.' ;
+                                    document.getElementById('deliveryCost').style.color = 'yellow';
+                                    document.getElementById('finalCost').innerHTML = 'Итого к оплате: '+ postPrice.toFixed(2) + ' р.';
+
+                                  } else {
+
+                                    dostavkaPrice = 5;
+                                    postPrice = dostavkaPrice + finalPrice;
+                                    document.getElementById('deliveryCost').innerHTML = 'Стоимость доставки: ' +  dostavkaPrice+ ' р.' ;
+                                    document.getElementById('deliveryCost').style.color = 'red';
+                                    document.getElementById('finalCost').innerHTML = 'Итого к оплате: '+ postPrice.toFixed(2) + ' р.';
+                                  }
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", '/submitMenu', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                   xhr.send(JSON.stringify(itemOrder[i]));
+
+                  }
+             }
+        }
+          minusCounter[i].onclick = function(){
+                for (var i=0;i<itemOrder.length;i++){
+                    if ((this.id.substr(0,14) === itemOrder[i]._id) && (itemOrder[i].counter>1)){
+                      itemOrder[i].counter--;
+                      finalPrice -=  itemOrder[i].price;
+                      orderCost.innerHTML = 'Стоимость заказа: ' + finalPrice.toFixed(2) + ' р.';
+                        colCounter[i].innerHTML = itemOrder[i].counter;
+
+                        if ( ( finalPrice > 10 ) || (document.getElementById('adressOrder').value === 'la Villa') ) {
+
+                          dostavkaPrice = 0;
+                          postPrice = dostavkaPrice + finalPrice;
+                          document.getElementById('deliveryCost').innerHTML = 'Стоимость доставки: ' +  dostavkaPrice+ ' р.' ;
+                          document.getElementById('deliveryCost').style.color = 'yellow';
+                          document.getElementById('finalCost').innerHTML = 'Итого к оплате: '+ postPrice.toFixed(2) + ' р.';
+
+                        } else {
+
+                          dostavkaPrice = 5;
+                          postPrice = dostavkaPrice + finalPrice;
+                          document.getElementById('deliveryCost').innerHTML = 'Стоимость доставки: ' +  dostavkaPrice+ ' р.' ;
+                          document.getElementById('deliveryCost').style.color = 'red';
+                          document.getElementById('finalCost').innerHTML = 'Итого к оплате: '+ postPrice.toFixed(2) + ' р.';
+                        }
+
+
+                        var xhr = new XMLHttpRequest();
+                        xhr.open("POST", '/submitMenu', true);
+                        xhr.setRequestHeader('Content-Type', 'application/json');
+                       xhr.send(JSON.stringify(itemOrder[i]));
+                    }
+               }
+          }
+      }
+
+      document.getElementById('buttonOrder').onclick = () =>{
+      let Data = new Date();
+      let buffOrder = [];
+            postOrder._id = makeid();
+            postOrder.guest = document.getElementById('nameOrder').value;
+            postOrder.guestNumber = document.getElementById('telephoneOrder').value;
+            postOrder.guestAdress = document.getElementById('adressOrder').value;
+            postOrder.comment = document.getElementById('commentOrder').value;
+            postOrder.price = postPrice.toFixed(2);
+            postOrder.timeOrder = new Date();
+
+            for (let i = 0; i<itemOrder.length; i++){
+                 buffOrder[i] = {
+                  name:itemOrder[i].name,
+                  price:itemOrder[i].price,
+                  count:itemOrder[i].counter
+                }
+            }
+            postOrder.orderDish=JSON.stringify(buffOrder);
+            postOrder.status = 'Принят';
+            postOrder.timeOrder = Data.getHours() + ':' + Data.getMinutes() + ':' + Data.getSeconds() + '. ' + Data.getDate() + ' '
+            + monthNames[Data.getMonth()] +' '+ Data.getFullYear();
+
+                var xhr = new XMLHttpRequest();
+                xhr.open("POST", '/order', true);
+                xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify(postOrder));
+                alert('ЗАКАЗ ПРИНЯТ!')
+                window.location.reload();
+          }
+
     return   products;
 }
-
-
-
-      fetch('/orderItems')
-            .then(function(response) {
-              return response.json();
-            })
-          .then(function (post){
-              var itemsOrder = [];
-                  for(i=0;i< post.length;i++) {
-                     for(k=0;k< post.length;k++) {
-                       if(k!=i) {
-                         if( post[i].name == post[k].name ) post[k]=''
-                       }
-                     }
-                   }
-                   for(i=0;i< post.length;i++) {
-                     if(post[i]=='') continue
-                     else itemsOrder.push(post[i])
-                   }
-                   itemOrder = itemsOrder;
-
-             return itemOrder
-           })
-
-
-
          window.onload = () => {
-                  itemOrder =   getElementMenu()
+                var  itemOrder = getElementMenu()
                   // renderOrder(itemOrder)
-
-                       let orderCost = document.getElementById('orderCost');
-
-                       document.getElementById('buttonOrder').onclick = () =>{
-                       let Data = new Date();
-                       let buffOrder = [];
-                             postOrder._id = makeid();
-                             postOrder.guest = document.getElementById('nameOrder').value;
-                             postOrder.guestNumber = document.getElementById('telephoneOrder').value;
-                             postOrder.guestAdress = document.getElementById('adressOrder').value;
-                             postOrder.comment = document.getElementById('commentOrder').value;
-                             postOrder.price = postPrice.toFixed(2);
-                             postOrder.timeOrder = new Date();
-
-                             for (let i = 0; i<itemOrder.length; i++){
-                                  buffOrder[i] = {
-                                   name:itemOrder[i].name,
-                                   price:itemOrder[i].price,
-                                   count:itemOrder[i].counter
-                                 }
-                             }
-                             postOrder.orderDish=JSON.stringify(buffOrder);
-                             postOrder.status = 'Принят';
-                             postOrder.timeOrder = Data.getHours() + ':' + Data.getMinutes() + ':' + Data.getSeconds() + '. ' + Data.getDate() + ' '
-                             + monthNames[Data.getMonth()] +' '+ Data.getFullYear();
-
-                                 var xhr = new XMLHttpRequest();
-                                 xhr.open("POST", '/order', true);
-                                 xhr.setRequestHeader('Content-Type', 'application/json');
-                                 xhr.send(JSON.stringify(postOrder));
-
-                               window.location.reload();
-                           }
-
-
-                           for (let i=0; i<deleteItem.length;i++){
-
-                                                deleteItem[i].onclick = function(){
-                                                  if (this.id.substr(0,14)=== itemOrder[i]._id){
-                                                      var xhr = new XMLHttpRequest();
-                                                      xhr.open("POST", '/submitMenuDelete', true);
-                                                      xhr.setRequestHeader('Content-Type', 'application/json');
-                                                      xhr.send(JSON.stringify(itemOrder[i]));
-                                                      window.location.reload();
-                                                   }
-                                                }
-                             }
-
-                           for (let i=0; i<plusCounter.length;i++){
-
-                               plusCounter[i].onclick = function add(){
-                                   for (var i=0;i<itemOrder.length;i++){
-                                       if (this.id.substr(0,14)=== itemOrder[i]._id){
-                                       itemOrder[i].counter++;
-                                       finalPrice +=  Number(itemOrder[i].price);
-                                       orderCost.innerHTML = 'Стоимость заказа: ' + finalPrice.toFixed(2) + ' р.';
-                                       colCounter[i].innerHTML = itemOrder[i].counter;
-
-                                                       if ( ( finalPrice > 10 ) || (document.getElementById('adressOrder').value === 'la Villa') ) {
-
-                                                         dostavkaPrice = 0;
-                                                         postPrice = dostavkaPrice + finalPrice;
-                                                         document.getElementById('deliveryCost').innerHTML = 'Стоимость доставки: ' +  dostavkaPrice+ ' р.' ;
-                                                         document.getElementById('deliveryCost').style.color = 'yellow';
-                                                         document.getElementById('finalCost').innerHTML = 'Итого к оплате: '+ postPrice.toFixed(2) + ' р.';
-
-                                                       } else {
-
-                                                         dostavkaPrice = 5;
-                                                         postPrice = dostavkaPrice + finalPrice;
-                                                         document.getElementById('deliveryCost').innerHTML = 'Стоимость доставки: ' +  dostavkaPrice+ ' р.' ;
-                                                         document.getElementById('deliveryCost').style.color = 'red';
-                                                         document.getElementById('finalCost').innerHTML = 'Итого к оплате: '+ postPrice.toFixed(2) + ' р.';
-                                                       }
-
-                                         var xhr = new XMLHttpRequest();
-                                         xhr.open("POST", '/submitMenu', true);
-                                         xhr.setRequestHeader('Content-Type', 'application/json');
-                                        xhr.send(JSON.stringify(itemOrder[i]));
-
-                                       }
-                                  }
-                             }
-                               minusCounter[i].onclick = function(){
-                                     for (var i=0;i<itemOrder.length;i++){
-                                         if ((this.id.substr(0,14) === itemOrder[i]._id) && (itemOrder[i].counter>0)){
-                                           itemOrder[i].counter--;
-                                           finalPrice -=  itemOrder[i].price;
-                                           orderCost.innerHTML = 'Стоимость заказа: ' + finalPrice.toFixed(2) + ' р.';
-                                             colCounter[i].innerHTML = itemOrder[i].counter;
-
-                                             if ( ( finalPrice > 10 ) || (document.getElementById('adressOrder').value === 'la Villa') ) {
-
-                                               dostavkaPrice = 0;
-                                               postPrice = dostavkaPrice + finalPrice;
-                                               document.getElementById('deliveryCost').innerHTML = 'Стоимость доставки: ' +  dostavkaPrice+ ' р.' ;
-                                               document.getElementById('deliveryCost').style.color = 'yellow';
-                                               document.getElementById('finalCost').innerHTML = 'Итого к оплате: '+ postPrice.toFixed(2) + ' р.';
-
-                                             } else {
-
-                                               dostavkaPrice = 5;
-                                               postPrice = dostavkaPrice + finalPrice;
-                                               document.getElementById('deliveryCost').innerHTML = 'Стоимость доставки: ' +  dostavkaPrice+ ' р.' ;
-                                               document.getElementById('deliveryCost').style.color = 'red';
-                                               document.getElementById('finalCost').innerHTML = 'Итого к оплате: '+ postPrice.toFixed(2) + ' р.';
-                                             }
-
-
-                                             var xhr = new XMLHttpRequest();
-                                             xhr.open("POST", '/submitMenu', true);
-                                             xhr.setRequestHeader('Content-Type', 'application/json');
-                                            xhr.send(JSON.stringify(itemOrder[i]));
-                                         }
-                                    }
-                               }
-                           }
 
          }
 

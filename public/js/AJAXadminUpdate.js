@@ -1,8 +1,5 @@
 window.onload = () => {
-//  document.getElementById('buttonStatus').onclick = updateStatus(changeStatus());
 }
-
-
 function updateStatus(status){
   var xhr = new XMLHttpRequest();
   var body = 'status=' + encodeURIComponent(status)+
@@ -12,15 +9,14 @@ function updateStatus(status){
   console.log(body)
   xhr.send(body);
 }
-
 function changeStatus() {
+  console.log('sfsd')
     var eID = document.getElementById("comboBox");
     var colorVal = eID.options[eID.selectedIndex].value;
     var colortxt = eID.options[eID.selectedIndex].text;
   document.getElementById('orderStatus').innerText='Статус заказа ' + colortxt;
 updateStatus(colortxt)
 }
-
 
 function CallPrint(strid) {
   var prtContent = document.getElementById(strid);
@@ -29,7 +25,7 @@ function CallPrint(strid) {
   WinPrint.document.write('<div id="print" class="contentpane">'); WinPrint.document.write(prtCSS);
   WinPrint.document.write(prtContent.innerHTML); WinPrint.document.write('</div>'); WinPrint.document.close();
   WinPrint.focus();
-  WinPrint.print(); 
+  WinPrint.print();
   WinPrint.close();
   prtContent.innerHTML=strOldOne;
 }
