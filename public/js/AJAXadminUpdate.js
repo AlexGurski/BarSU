@@ -1,4 +1,5 @@
 window.onload = () => {
+
 }
 function updateStatus(status){
   var xhr = new XMLHttpRequest();
