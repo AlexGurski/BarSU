@@ -82,7 +82,7 @@ justify-content: center;
 .center::-webkit-scrollbar {width:0px;}
 
 .allHeader{
-  border: 2px solid red;
+//  border: 2px solid red;
   display: flex;
 
   min-height: 10vh;

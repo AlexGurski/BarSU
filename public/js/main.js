@@ -20,28 +20,9 @@ async function getElementMenu(){
 
 
 window.onload = () => {
+
   items =   getElementMenu();
     }
-
-
-      document.getElementsByClassName('pizzaMenu')[0].onclick = ()=>{
-        filter(document.getElementsByClassName('ItemsCenter'),'Пицца')
-      };
-      document.getElementsByClassName('hotMenu')[0].onclick = ()=>{
-        filter(document.getElementsByClassName('ItemsCenter'),'Горячее блюдо', 'Гриль')
-      };
-      document.getElementsByClassName('drinkMenu')[0].onclick = ()=>{
-        filter(document.getElementsByClassName('ItemsCenter'),'Напиток','Крюшон','Кофе', 'Коктейль' ,'Напитки')
-      };
-      document.getElementsByClassName('coldMenu')[0].onclick = ()=>{
-        filter(document.getElementsByClassName('ItemsCenter'),'Закуски','Паста','Суп','Гарнир')
-      };
-      document.getElementsByClassName('otherMenu')[0].onclick = ()=>{
-        filter(document.getElementsByClassName('ItemsCenter'),'Другое','Соус')
-      };
-      document.getElementsByClassName('desertMenu')[0].onclick = ()=>{
-        filter(document.getElementsByClassName('ItemsCenter'),'Десерт')
-      };
 
       function magic() {
           if (  document.getElementsByClassName('center')[0].scrollTop > 120) {
@@ -70,8 +51,11 @@ function add () {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", '/submitMenu', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
+
+        items[i].ip = document.getElementById('ip').innerHTML;
+
         console.log(items[i]);
-     xhr.send(JSON.stringify(items[i]));
+        xhr.send(JSON.stringify(items[i]));
        }
     }
 };

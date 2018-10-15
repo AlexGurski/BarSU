@@ -48,6 +48,18 @@
             <div id='goToAdmin'> </div></a>
       </div>
 
-      <div class = 'rightHeader'>
+      <div class = 'rightHeader' id='rightHeader'>
+
+        <script type="application/javascript">
+          function getIP(json) {
+            const  ip = document.createElement("p");
+            ip.className = 'ip';
+            ip.id = 'ip'
+            ip.innerHTML = json.ip.replace(/\./g, "");;
+            document.getElementById('rightHeader').appendChild(ip);
+          }
+        </script>
+
+        <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
       </div>
 </div>
