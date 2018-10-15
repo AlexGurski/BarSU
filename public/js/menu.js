@@ -1,59 +1,73 @@
 var items = [];
 var addCart = [];
 
+async function getElementMenu(){
+    let responseMenu = await fetch('/sendMenu')
+    let products = await responseMenu.json();
+    await   console.log(products)
+    await   new Promise((resolve, reject) => setTimeout(resolve, 100));
+    await   create(products);
+
+    var   addCart = await document.getElementsByClassName('addCart');
+
+    for(var i=0; i < addCart.length; i++){
+      addCart[i].onclick = add
+    }
+
+    items = products
+    return items;
+}
+/*
 fetch('/sendMenu')
                 .then(function(response) {
-                  return response.json();
+                    return response.json();
                  })
-                 .then(menu => {
-                     items = menu;
-                     return items
-                 }).then(items => {
-                   console.log(items)
-                   create(items);
-                   window.onload = () => {
+                   .then(menu => {
+                       items = menu;
+                       return items
+                   })
+                     .then(items => {
+                       console.log(items)
+                     })
 
-                           for(var i=0; i < addCart.length; i++){
-                             addCart[i].onclick = add;
-                         }
+*/
 
-                         document.getElementsByClassName('center')[0].onscroll = magic;
-                           let btn = document.querySelector('.knopka');
-                             btn.onclick = function () {
-                           	   document.getElementsByClassName('center')[0].scrollTo(0,0);
-                             };
+window.onload = () => {
+  items =   getElementMenu();
 
-                         document.getElementsByClassName('pizzaMenu')[0].onclick = ()=>{
-                           filter(document.getElementsByClassName('ItemsCenter'),'Пицца')
-                         };
-                         document.getElementsByClassName('hotMenu')[0].onclick = ()=>{
-                           filter(document.getElementsByClassName('ItemsCenter'),'Горячее блюдо', 'Гриль')
-                         };
-                         document.getElementsByClassName('drinkMenu')[0].onclick = ()=>{
-                           filter(document.getElementsByClassName('ItemsCenter'),'Напиток','Крюшон','Кофе', 'Коктейль' ,'Напитки')
-                         };
-                         document.getElementsByClassName('coldMenu')[0].onclick = ()=>{
-                           filter(document.getElementsByClassName('ItemsCenter'),'Закуски','Паста','Суп','Гарнир')
-                         };
-                         document.getElementsByClassName('otherMenu')[0].onclick = ()=>{
-                           filter(document.getElementsByClassName('ItemsCenter'),'Другое','Соус')
-                         };
-                         document.getElementsByClassName('desertMenu')[0].onclick = ()=>{
-                           filter(document.getElementsByClassName('ItemsCenter'),'Десерт')
-                         };
+      document.getElementsByClassName('center')[0].onscroll = magic;
+        let btn = document.querySelector('.knopka');
+          btn.onclick = function () {
+        	   document.getElementsByClassName('center')[0].scrollTo(0,0);
+          };
 
-                         function magic() {
-                             if (  document.getElementsByClassName('center')[0].scrollTop > 120) {
-                             btn.style.opacity = '0.9';
-                             }
-                               else { btn.style.opacity = '0'; }
+      document.getElementsByClassName('pizzaMenu')[0].onclick = ()=>{
+        filter(document.getElementsByClassName('ItemsCenter'),'Пицца')
+      };
+      document.getElementsByClassName('hotMenu')[0].onclick = ()=>{
+        filter(document.getElementsByClassName('ItemsCenter'),'Горячее блюдо', 'Гриль')
+      };
+      document.getElementsByClassName('drinkMenu')[0].onclick = ()=>{
+        filter(document.getElementsByClassName('ItemsCenter'),'Напиток','Крюшон','Кофе', 'Коктейль' ,'Напитки')
+      };
+      document.getElementsByClassName('coldMenu')[0].onclick = ()=>{
+        filter(document.getElementsByClassName('ItemsCenter'),'Закуски','Паста','Суп','Гарнир')
+      };
+      document.getElementsByClassName('otherMenu')[0].onclick = ()=>{
+        filter(document.getElementsByClassName('ItemsCenter'),'Другое','Соус')
+      };
+      document.getElementsByClassName('desertMenu')[0].onclick = ()=>{
+        filter(document.getElementsByClassName('ItemsCenter'),'Десерт')
+      };
 
-                         }
-                   }
-                 })
+      function magic() {
+          if (  document.getElementsByClassName('center')[0].scrollTop > 120) {
+          btn.style.opacity = '0.9';
+          }
+            else { btn.style.opacity = '0'; }
 
-
-
+      }
+}
 
 function filter(item){
     for (var i=0;i<item.length;i++){
@@ -68,6 +82,7 @@ item[i].style.display = "block";
   }
 
 function add () {
+  
     for (var i=0;i<items.length;i++){
       if (this.id === items[i]._id){
         items[i].counter = 1;
@@ -86,7 +101,7 @@ function add () {
 };
 
 function create(items){
-
+  console.log('create')
   for (var i=0; i<items.length; i++){
     var arrDisc = items[i].discription.split(',');
 
@@ -156,7 +171,7 @@ function create(items){
    document.getElementById(addCart.id).appendChild(imgPrice);
 
  }
-  addCart = document.getElementsByClassName('addCart');
+
 }
 
 function url(item){

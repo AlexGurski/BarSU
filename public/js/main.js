@@ -1,18 +1,28 @@
 var items = [];
 var addCart = [];
 
-window.onload = () => {
-      create(items);
+async function getElementMenu(){
+    let responseMenu = await fetch('/sendMenu')
+    let products = await responseMenu.json();
+    await   console.log(products)
+    await   new Promise((resolve, reject) => setTimeout(resolve, 100));
+    await   create(products);
 
-        for(var i=0; i < addCart.length; i++){
-          addCart[i].onclick = add;
+    var   addCart = await document.getElementsByClassName('addCart');
+
+    for(var i=0; i < addCart.length; i++){
+      addCart[i].onclick = add
     }
 
-      document.getElementsByClassName('center')[0].onscroll = magic;
-        let btn = document.querySelector('.knopka');
-          btn.onclick = function () {
-        	   document.getElementsByClassName('center')[0].scrollTo(0,0);
-          };
+    items = products
+    return items;
+}
+
+
+window.onload = () => {
+  items =   getElementMenu();
+    }
+
 
       document.getElementsByClassName('pizzaMenu')[0].onclick = ()=>{
         filter(document.getElementsByClassName('ItemsCenter'),'Пицца')
@@ -40,7 +50,6 @@ window.onload = () => {
             else { btn.style.opacity = '0'; }
 
       }
-}
 
 function filter(item){
     for (var i=0;i<item.length;i++){
@@ -162,11 +171,3 @@ function url(item){
   if (item ==='Другое') ret = 'other'
   return ret;
 }
-
-fetch('/sendMenu')
-                .then(function(response) {
-                  return response.json();
-                 })
-                 .then(menu => {
-                     items = menu;
-                 })

@@ -12,33 +12,46 @@ let minusCounter =  document.getElementsByClassName('minusCounter');
 let colCounter = document.getElementsByClassName('colCounter');
 let deleteItem = document.getElementsByClassName('deleteCart');
 
+async function getElementMenu(){
+    let responseMenu = await fetch('/orderItems')
+    let products = await responseMenu.json();
 
-fetch('/orderItems')
-      .then(function(response) {
-        return response.json();
-      })
-    .then(function (post){
-        var itemsOrder = [];
-            for(i=0;i< post.length;i++) {
-               for(k=0;k< post.length;k++) {
-                 if(k!=i) {
-                   if( post[i].name == post[k].name ) post[k]=''
-                 }
-               }
-             }
-             for(i=0;i< post.length;i++) {
-               if(post[i]=='') continue
-               else itemsOrder.push(post[i])
-             }
-             itemOrder = itemsOrder;
+    await new Promise((resolve, reject) => setTimeout(resolve, 200));
+    await  console.log(products)
+    await renderOrder(products);
+    return   products;
+}
 
-       return itemOrder
-     })
-     .then(itemOrder =>{
-         console.log(itemOrder)
+
+
+      fetch('/orderItems')
+            .then(function(response) {
+              return response.json();
+            })
+          .then(function (post){
+              var itemsOrder = [];
+                  for(i=0;i< post.length;i++) {
+                     for(k=0;k< post.length;k++) {
+                       if(k!=i) {
+                         if( post[i].name == post[k].name ) post[k]=''
+                       }
+                     }
+                   }
+                   for(i=0;i< post.length;i++) {
+                     if(post[i]=='') continue
+                     else itemsOrder.push(post[i])
+                   }
+                   itemOrder = itemsOrder;
+
+             return itemOrder
+           })
+
+
+
          window.onload = () => {
+                  itemOrder =   getElementMenu()
+                  // renderOrder(itemOrder)
 
-                       renderOrder(itemOrder);
                        let orderCost = document.getElementById('orderCost');
 
                        document.getElementById('buttonOrder').onclick = () =>{
@@ -53,7 +66,7 @@ fetch('/orderItems')
                              postOrder.timeOrder = new Date();
 
                              for (let i = 0; i<itemOrder.length; i++){
-                                 buffOrder[i] = {
+                                  buffOrder[i] = {
                                    name:itemOrder[i].name,
                                    price:itemOrder[i].price,
                                    count:itemOrder[i].counter
@@ -74,17 +87,17 @@ fetch('/orderItems')
 
 
                            for (let i=0; i<deleteItem.length;i++){
-                             deleteItem[i].onclick = function(){
 
-                               if (this.id.substr(0,14)=== itemOrder[i]._id){
-                                   var xhr = new XMLHttpRequest();
-                                   xhr.open("POST", '/submitMenuDelete', true);
-                                   xhr.setRequestHeader('Content-Type', 'application/json');
-                                   xhr.send(JSON.stringify(itemOrder[i]));
-                                   window.location.reload();
-                                }
+                                                deleteItem[i].onclick = function(){
+                                                  if (this.id.substr(0,14)=== itemOrder[i]._id){
+                                                      var xhr = new XMLHttpRequest();
+                                                      xhr.open("POST", '/submitMenuDelete', true);
+                                                      xhr.setRequestHeader('Content-Type', 'application/json');
+                                                      xhr.send(JSON.stringify(itemOrder[i]));
+                                                      window.location.reload();
+                                                   }
+                                                }
                              }
-                       }
 
                            for (let i=0; i<plusCounter.length;i++){
 
@@ -157,10 +170,6 @@ fetch('/orderItems')
                            }
 
          }
-     })
-
-
-
 
         function fun1() {
         var chbox;
