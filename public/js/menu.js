@@ -75,6 +75,8 @@ function add () {
         var xhr = new XMLHttpRequest();
         xhr.open("POST", '/submitMenu', true);
         xhr.setRequestHeader('Content-Type', 'application/json');
+        items[i].ip = document.getElementById('ip').innerHTML;
+
         console.log(items[i]);
      xhr.send(JSON.stringify(items[i]));
   document.getElementById('notification-text').innerText = items[i].name + ' в корзине';

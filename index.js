@@ -12,6 +12,7 @@ const dbName = 'heroku_m3c7r3j8';
 const url = 'mongodb://localhost:27017/';
 const dbName = 'heroku_m3c7r3j8';
 */
+var massivZaskazov = {};
 const massMenu = [];
   const rez =   require("./public/modules/menuSearch");
   var massiv = [];
@@ -89,27 +90,54 @@ const collection =db.collection('order');
 
 
     app.post("/submitMenuDelete", (req,res) => {
-    for (let i = 0; i<massiv.length;i++){
+      let  massiv = typeof massivZaskazov[req.body.ip] == "undefined" ? [] : massivZaskazov[req.body.ip];
+    for (let i = 0; i < massiv.length;i++){
       if (massiv[i]._id.substr(0,14) === req.body._id.substr(0,14)){
       massiv.splice(i,1);
       }
     }
   res.send(null);
+  massivZaskazov[req.body.ip] = massiv;
+  massiv = [];
 });
 
 app.post("/submitMenu", (req,res) => {
-
+  let   massiv = typeof massivZaskazov[req.body.ip] === "undefined" ? [] : massivZaskazov[req.body.ip];
   console.log('--POST MENU--');
-
-for (let i = 0; i<massiv.length;i++){
-  if (massiv[i]._id.substr(0,14) === req.body._id.substr(0,14)){
-  massiv.splice(i,1);
+    for (let i = 0; i < massiv.length;i++){
+      if (massiv[i]._id.substr(0,14) === req.body._id.substr(0,14)){
+      massiv.splice(i,1);
+    }
   }
-}
-massiv.push(req.body);
-
-res.send(null);
+    massiv.push(req.body);
+    console.log(req.body.ip)
+    massivZaskazov[req.body.ip] = massiv;
+    massiv = [];
+    res.send(null);
 });
+
+
+MongoClient.connect(url, (err, client) => {
+assert.equal(null, err);
+const db = client.db("heroku_m3c7r3j8");
+const collection =db.collection('order');
+  app.post("/order", (req,res) => {
+            collection.insertOne(req.body,(err,result)=>{
+              console.log(req.body)
+                      if(err){
+                        console.log(err);
+                        res.sendStatus(500);
+                      }
+
+                    delete   massivZaskazov[req.body.ip]
+                      res.redirect('/order')
+                  })
+      })
+});
+
+app.get('/orderItems', (req,res) => {
+          res.send(massivZaskazov);
+        })
 
 
         app.get('/sendMenu', (req,res) => {
@@ -142,30 +170,14 @@ app.get('/admin', (req,res) => {
          });
         })
 
-MongoClient.connect(url, (err, client) => {
-assert.equal(null, err);
-const db = client.db("heroku_m3c7r3j8");
-const collection =db.collection('order');
-  app.post("/order", (req,res) => {
 
-            collection.insertOne(req.body,(err,result)=>{
-                      if(err){
-                        console.log(err);
-                        res.sendStatus(500);
-                      }  massiv = [];
-                      res.redirect('/order')
-                  })
-      })
-});
     /////////////////////
 
 app.get('/order',(req, res) => {
   res.render('order.ejs');
 })
 
-app.get('/orderItems', (req,res) => {
-          res.send(massiv);
-        })
+
 
 ////////////////ОТЗЫВЫ!!!..................
 
@@ -183,14 +195,14 @@ app.get('/orderItems', (req,res) => {
     MongoClient.connect(url, (err, client) => {
     assert.equal(null, err);
     const db = client.db("heroku_m3c7r3j8");
-    const collection =db.collection('event');
+    //const collection = db.collection('event');
       app.post("/about/write", (req,res) => {
             const  event= { "date":req.body.date,
                             "name":String(req.body.name),
                             "text":String(req.body.text)
                           };
 
-                collection.insertOne(event,(err,result)=>{
+                db.collection('event').insertOne(event,(err,result)=>{
                           if(err){
                             console.log(err);
                             res.sendStatus(500);

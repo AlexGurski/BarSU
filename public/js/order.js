@@ -13,10 +13,12 @@ var colCounter = document.getElementsByClassName('colCounter');
 var deleteItem = document.getElementsByClassName('deleteCart');
 
 async function getElementMenu(){
+
     let responseMenu = await fetch('/orderItems')
     let products = await responseMenu.json();
-
+      await  console.log(products)
     await new Promise((resolve, reject) => setTimeout(resolve, 0));
+    products = products[document.getElementById('ip').innerHTML];
     await  console.log(products)
     await renderOrder(products);
     var itemOrder = products;
@@ -116,6 +118,7 @@ async function getElementMenu(){
             postOrder.comment = document.getElementById('commentOrder').value;
             postOrder.price = postPrice.toFixed(2);
             postOrder.timeOrder = new Date();
+            postOrder.ip = document.getElementById('ip').innerHTML;
 
             for (let i = 0; i<itemOrder.length; i++){
                  buffOrder[i] = {
