@@ -19,7 +19,10 @@ async function getElementMenu(){
 }
 
 
+window.onload = () => {
 
+  items =   getElementMenu();
+    }
 
       function magic() {
           if (  document.getElementsByClassName('center')[0].scrollTop > 120) {
