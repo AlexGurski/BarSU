@@ -1,3 +1,7 @@
+const monthNames = ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь",
+  "Июль", "Август", "Сентябрь", "Октябрь", "Ноявбрь", "Декабрь"
+];
+      let Data = new Date();
 const express = require('express');
 const bodyParser = require( 'body-parser' );
 const app = express();
@@ -118,11 +122,15 @@ app.post("/submitMenu", (req,res) => {
 
 
 MongoClient.connect(url, (err, client) => {
+
 assert.equal(null, err);
 const db = client.db("heroku_m3c7r3j8");
 const collection =db.collection('order');
   app.post("/order", (req,res) => {
+      req.body.timeOrder =  Data.getHours() + ':' + Data.getMinutes() + ':' + Data.getSeconds() + '. ' + Data.getDate() + ' '
+        + monthNames[Data.getMonth()] +' '+ Data.getFullYear();
             collection.insertOne(req.body,(err,result)=>{
+
               console.log(req.body)
                       if(err){
                         console.log(err);
@@ -197,7 +205,8 @@ app.get('/order',(req, res) => {
     const db = client.db("heroku_m3c7r3j8");
     //const collection = db.collection('event');
       app.post("/about/write", (req,res) => {
-            const  event= { "date":req.body.date,
+            const  event= { "date":Data.getHours() + ':' + Data.getMinutes() + ':' + Data.getSeconds() + '. ' + Data.getDate() + ' '
+              + monthNames[Data.getMonth()] +' '+ Data.getFullYear(),
                             "name":String(req.body.name),
                             "text":String(req.body.text)
                           };

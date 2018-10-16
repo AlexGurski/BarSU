@@ -109,7 +109,7 @@ async function getElementMenu(){
       }
 
       document.getElementById('buttonOrder').onclick = () =>{
-      let Data = new Date();
+  //    let Data = new Date();
       let buffOrder = [];
             postOrder._id = makeid();
             postOrder.guest = document.getElementById('nameOrder').value;
@@ -129,9 +129,9 @@ async function getElementMenu(){
             }
             postOrder.orderDish=JSON.stringify(buffOrder);
             postOrder.status = 'Принят';
-            postOrder.timeOrder = Data.getHours() + ':' + Data.getMinutes() + ':' + Data.getSeconds() + '. ' + Data.getDate() + ' '
+          /*  postOrder.timeOrder = Data.getHours() + ':' + Data.getMinutes() + ':' + Data.getSeconds() + '. ' + Data.getDate() + ' '
             + monthNames[Data.getMonth()] +' '+ Data.getFullYear();
-
+*/
                 var xhr = new XMLHttpRequest();
                 xhr.open("POST", '/order', true);
                 xhr.setRequestHeader('Content-Type', 'application/json');
@@ -145,7 +145,6 @@ async function getElementMenu(){
                     var name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
                     document.cookie = name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT";
 }
-
                 window.location.reload();
 
 
