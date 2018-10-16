@@ -36,6 +36,7 @@ html {
 
 #ip{
   visibility: hidden;
+  font-size: 1px;
 }
 #goToAdmin{
   height: 20px;
