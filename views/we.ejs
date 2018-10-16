@@ -18,7 +18,7 @@
       }
       .photo{
         height: 100%;
-        width: 15%;
+        width: 20%;
         border: 2px dashed black;
         border-radius: 45px;
         background-color: white;
@@ -26,6 +26,18 @@
         background-size: contain;
         background-position: center;
       }
+
+      @media screen and (max-width: 720px) {
+        .photo{
+            width: 50%;
+      }
+    }
+
+    @media screen and (max-width: 1020px) {
+      .photo{
+          width: 40%;
+    }
+  }
       .about{
         display: flex;
         flex-direction: column;
@@ -37,12 +49,14 @@
       .name{
         text-align: center;
         width: 100%;
-  
+
         color:yellow;
         font-size: 30px;
         align-self: center;
       }
-
+.work{
+text-shadow: 1px 1px 2px white, 0 0 1em red;
+}
 
     </style>
 
@@ -103,8 +117,9 @@
               <div class = 'name'>
 <%=workers[i].name%>
 
-          <br>
+          <br> <div class = "work">
 <%=workers[i].work%>
+</div>
               </div>
 
         </div>
