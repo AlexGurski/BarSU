@@ -46,7 +46,21 @@ item[i].style.display = "block";
 
 function add () {
     for (var i=0;i<items.length;i++){
+
       if (this.id === items[i]._id){
+
+        document.getElementById('poppupAdd').innerText = items[i].name + "\n добавлен(а) в заказ"
+        document.getElementById('poppupAdd').style.opacity = '0.8'
+        document.getElementById('poppupAdd').style.top = event.clientY - document.getElementById('poppupAdd').offsetHeight/2 +'px';
+        document.getElementById('poppupAdd').style.left = event.clientX - document.getElementById('poppupAdd').offsetWidth/2 +'px';
+        setTimeout(()=>{
+          document.getElementById('poppupAdd').style.opacity = '0'
+          setTimeout(()=>{
+              document.getElementById('poppupAdd').style.top = '-400px'
+          },1000)
+        },3000)
+
+
         items[i].counter = 1;
         var xhr = new XMLHttpRequest();
         xhr.open("POST", '/submitMenu', true);

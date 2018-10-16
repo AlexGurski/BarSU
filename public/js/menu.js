@@ -79,11 +79,16 @@ function add () {
 
         console.log(items[i]);
      xhr.send(JSON.stringify(items[i]));
-  document.getElementById('notification-text').innerText = items[i].name + ' в корзине';
-  document.getElementById('show').checked = 'checked';
-  setTimeout(()=>{
-    document.getElementById('hide').checked = 'checked';
-  },3000)
+     document.getElementById('poppupAdd').innerText = items[i].name + "\n добавлен(а) в заказ"
+     document.getElementById('poppupAdd').style.opacity = '0.8'
+     document.getElementById('poppupAdd').style.top = event.clientY - document.getElementById('poppupAdd').offsetHeight/2 +'px';
+     document.getElementById('poppupAdd').style.left = event.clientX - document.getElementById('poppupAdd').offsetWidth/2 +'px';
+     setTimeout(()=>{
+       document.getElementById('poppupAdd').style.opacity = '0'
+       setTimeout(()=>{
+           document.getElementById('poppupAdd').style.top = '-400px'
+       },1000)
+     },3000)
        }
     }
 };

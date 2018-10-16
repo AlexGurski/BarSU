@@ -4,6 +4,21 @@
 
   justify-content: space-between;
 }
+.poppupAdd{
+  opacity: 0;
+  top:-1005px;
+  left: -1005px;
+  position: absolute;
+  display: inline-block;
+  padding:  30px;
+  border: 3px dotted yellow;
+  background-color: black;
+  font-size: 150%;
+  color: gold;
+  z-index: 999;
+ transition: opacity 1s;
+ border-radius: 25px;
+}
 .akcii{
   height: 50%;
 
