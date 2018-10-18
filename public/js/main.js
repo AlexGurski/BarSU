@@ -13,16 +13,14 @@ async function getElementMenu(){
     for(var i=0; i < addCart.length; i++){
       addCart[i].onclick = add
     }
-
     items = products
     return items;
 }
 
 
 window.onload = () => {
-
-  items =   getElementMenu();
-    }
+  items =getElementMenu();
+}
 
       function magic() {
           if (  document.getElementsByClassName('center')[0].scrollTop > 120) {
@@ -76,7 +74,7 @@ function add () {
 
 function create(items){
 
-  for (var i=19; i<25; i++){
+  for (var i=21 ; i<25; i++){
     var arrDisc = items[i].discription.split(',');
 
    const  div = document.createElement("div");

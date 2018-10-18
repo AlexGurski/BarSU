@@ -1,8 +1,6 @@
 .mainCenter{
   display: flex;
   flex-direction: column;
-
-  justify-content: space-between;
 }
 .poppupAdd{
   opacity: 0;
@@ -19,23 +17,60 @@
  transition: opacity 1s;
  border-radius: 25px;
 }
-.akcii{
-  height: 50%;
 
-  background-image: url('../image/akcii1.jpg');
+.akciiPrice{
+  color: red;
+  font-size: 50px;
+  text-decoration: line-through;
+  text-decoration-color: black;
+  text-decoration-style: dashed;
+  margin-right: 1em;
+
+}
+.newPrice{
+  color:green;
+  font-size: 50px;
+  text-decoration: underline;
+  text-decoration-color: black;
+  text-decoration-style: dashed;
+}
+.spanPercent{
+  font-size: 35px;
+  color: red;
+  
+}
+.delivery {
+  border-radius: 25px;
+  background-image: url('../image/akcii3.jpg');
   background-repeat: no-repeat;
   background-size: cover;
-  margin-bottom: 10px;
+  margin-bottom: 1em;
   color:gold;
   font-size: 30px;
+
+}
+.akcii{
+    border-radius: 25px;
+  background-image: url('../image/akciiSession.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 1em;
+  color:gold;
+  font-size: 30px;
+
 }
 
 .akciiText{
   margin: 1em;
+  text-shadow: black 2px 2px 0, black -1px -1px 0,
+              black -2px 2px 0, black 1px -1px 0;
 }
+
 h1{
     font-size: 40px;
     margin: 1em;
+    text-shadow: black 2px 2px 0, black -1px -1px 0,
+                black -2px 2px 0, black 1px -1px 0;
 }
 
 .akciiGoToMenu a:hover {
@@ -45,15 +80,14 @@ h1{
 }
 
 .topFood{
-
   height: 480px;
   background-repeat: no-repeat;
   background-size: cover;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-
 }
+
 .akciiGoToMenu a{
   padding: 20px;
   border: 2px dotted black;
@@ -62,19 +96,19 @@ h1{
   background-color: yellow;
   color:black;
   cursor: pointer;
-text-decoration: none;
-text-transform: uppercase;
-color:black
+  text-decoration: none;
+  text-transform: uppercase;
+  color:black;
+  margin-bottom: 1em;
 }
 
 .topFood::-webkit-scrollbar {width:0px;}
 
 .hits{
-  margin-top: 30px;
-  height: 10%;
+  margin-bottom: 1em;
+  margin-bottom: 1em;
   text-align: center;
   color:white;
-
   align-items: flex-end;
   font-size: 250%;
 }
