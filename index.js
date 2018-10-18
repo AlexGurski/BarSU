@@ -44,6 +44,11 @@ const mass = [0];
               app.get('/we', (req, res) => {
                 res.render ('we.ejs');
               } );
+
+              app.get('/search', (req, res) => {
+                res.render ('search.ejs');
+              } );
+
               app.get('/vacancy', (req, res) => {
                 res.render ('vacancy.ejs');
               } );

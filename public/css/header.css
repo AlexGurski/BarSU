@@ -197,3 +197,7 @@ justify-content: center;
     left: 75%;
     transition-delay: 0.45s;
 }
+.header ul li a span:nth-child(5) {
+    left: 75%;
+    transition-delay: 0.45s;
+}

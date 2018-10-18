@@ -14,6 +14,7 @@ body, html {
 }
 
 .all{
+	opacity: 0;
 	display: flex;
 }
 .order {
@@ -32,12 +33,14 @@ body, html {
 	border: 2px dotted white;
 	vertical-align: top;
 		height: 50%;
+		overflow-y: scroll;
 }
 .adminArmor{
 	border: 2px dotted white;
 	width: 33%;
 	vertical-align: top;
-
+			height: 100vh;
+	overflow-y: scroll;
 }
 table{
 	background: white; /* Цвет фона таблицы */
@@ -54,6 +57,8 @@ TD, TH {
 	margin-top: 10px;
 	border:2px solid grey;
 	background-color: black;
+
+
 }
 .adminCenterMenu{
 	display: flex;

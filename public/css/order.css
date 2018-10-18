@@ -168,7 +168,7 @@ border-radius: 5px;
 .buyerName{
   flex-shrink: 2;
   flex-grow: 2;
-margin-top: 2em;
+  margin-top: 2em;
   flex-basis:60%;
 }
 .buyerPrice{

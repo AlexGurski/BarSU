@@ -1,6 +1,4 @@
-window.onload = () => {
 
-}
 function updateStatus(status){
   var xhr = new XMLHttpRequest();
   var body = 'status=' + encodeURIComponent(status)+

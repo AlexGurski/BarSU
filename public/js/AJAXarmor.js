@@ -1,8 +1,20 @@
+const image = () =>{
+  return (()=>{
+    return '1488'
+  })()
+}
 
-
+window.onload = () => {
+  let password = prompt('Enter password');
+  if ( password === image() ){
+    document.getElementsByClassName('all')[0].style.opacity=1;
+  } else {
+    alert('НЕ ВЕРНЫЙ ПАРОЛЬ!')
+    window.close();
+  }
+}
 
 let arrayArmor = [];
-
 let mydate=window.document.getElementById("mydate");
 let olddate=mydate.value;
 
