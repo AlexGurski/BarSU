@@ -89,7 +89,7 @@ const collection =db.collection('order');
     app.get('/menu', (req,res) => {
 
       rez('menu', {})
-      .then((items) =>{
+        .then((items) =>{
          res.render ('menu.ejs');
        })
          .catch((errorMessage)=>{

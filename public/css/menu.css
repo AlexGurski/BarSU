@@ -191,8 +191,6 @@ text-align: center;
   	background-image:url('../image/otherHover.png')
 }
 
-
-
 .notification-bar {
     position: absolute;
     width: 99%;
@@ -247,8 +245,7 @@ text-align: center;
 
 }
 
-
- .notification-bar input[value=show]:checked ~ label[for=show],
+.notification-bar input[value=show]:checked ~ label[for=show],
 .notification-bar input[value=hide]:checked ~ label[for=hide],
 .notification-bar input[value=hide]:checked ~ .notification-text {
     -webkit-transition: ease 350ms;
