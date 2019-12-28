@@ -1,0 +1,71 @@
+
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8" />
+  <title>la Villa</title>
+
+  -->
+</head>
+        <body>
+          <div class="centerPostOrderBot" id = 'centerPostOrderBot'>
+            <div class = 'buyerName'>
+              <input type = 'text' class = 'inputBox' id = '_id'><br>
+                <p> Вопрос</p><br>
+                  <input type = 'text' class = 'inputBox' id = 'vopros'><br>
+                <p>  Правильный ответ</p><br>
+                  <input type = 'text' class = 'inputBox' id = 'trues'><br>
+                    <p>  Вариант Б</p><br>
+                      <input type = 'text' class = 'inputBox' id = 'vB'><br>
+                      <p>  Вариант С</p><br>
+                        <input type = 'text' class = 'inputBox' id = 'vC'><br>
+                        <p>  Вариант Д</p><br>
+                          <input type = 'text' class = 'inputBox' id = 'vD'><br>
+                          <p>  СТРАНА</p><br>
+                            <input type = 'text' class = 'inputBox' id = 'country'><br>
+            </div>
+      <div id ='buttonOrder'>Оформить заказ</div>
+      </div>
+          <script>
+
+          (async function getElementMenu(){
+              let responseMenu = await fetch('/sendMenu')
+              let products = await responseMenu.json();
+            document.getElementById('_id').value = +products[products.length-1]._id +1
+              await   new Promise((resolve, reject) => setTimeout(resolve, 0));
+
+
+            //  return items;
+          })()
+
+          document.getElementById('buttonOrder').onclick = () =>{
+
+          let  _id = document.getElementById('_id').value;
+          let  vopros = document.getElementById('vopros').value;
+          let  trues = document.getElementById('trues').value;
+          let  vB = document.getElementById('vB').value;
+          let  vC = document.getElementById('vC').value;
+          let  vD = document.getElementById('vD').value;
+          let  hard = document.getElementById('country').value;
+              let body = {
+                "_id":_id,
+                "vopros":vopros,
+                "trues":trues,
+                "vB":vB,
+                "vC":vC,
+                "vD":vD,
+                "country":hard,
+              }
+
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", '/country', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify(body));
+
+window.location.reload();
+
+
+              }
+        </script>
+    </body>
+</html>

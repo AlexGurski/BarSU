@@ -43,7 +43,7 @@
                <span></span>
                <span></span></a>
             </li>
-          
+
             </ul>
             <a href = '/admin' target='_blank'>
             <div id='goToAdmin'> </div></a>
@@ -59,7 +59,6 @@
         document.getElementById('rightHeader').appendChild(ip);
 
           function getIP(json) {
-
             if (document.cookie !=''){
             //  alert( document.cookie );
               ip.innerHTML = document.cookie;
@@ -69,9 +68,8 @@
                     ip.innerHTML = document.cookie;
                   }
             }
-
         </script>
-
+        
         <script type="application/javascript" src="https://api.ipify.org?format=jsonp&callback=getIP"></script>
       </div>
 </div>

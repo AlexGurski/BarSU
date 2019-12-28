@@ -18,7 +18,7 @@ async function getElementMenu(){
     let products = await responseMenu.json();
       await  console.log(products)
     await new Promise((resolve, reject) => setTimeout(resolve, 0));
-    products = products[document.getElementById('ip').innerHTML];
+    products = products["name=Linux x86_64 Mozilla 178.120.6.62"];
     await  console.log(products)
     await renderOrder(products);
     var itemOrder = products;

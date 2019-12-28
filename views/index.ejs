@@ -4,71 +4,68 @@
 <head>
   <meta charset="utf-8" />
   <title>la Villa</title>
-  <link rel="shortcut icon" href="../public/image/ico.png" type="image/x-icon">
-  <link rel="stylesheet" type="text/css" href="public/css/main.css">
-  <link rel="stylesheet" type="text/css" href="public/css/styleAnimation.css">
-  <link rel="stylesheet" type="text/css" href="public/css/menu.css">
-  <script src="../public/js/main.js"></script>
+
+  -->
 </head>
         <body>
+          <div class="centerPostOrderBot" id = 'centerPostOrderBot'>
+            <div class = 'buyerName'>
+              <input type = 'text' class = 'inputBox' id = '_id'><br>
+                <p> Вопрос</p><br>
+                  <input type = 'text' class = 'inputBox' id = 'vopros'><br>
+                <p>  Правильный ответ</p><br>
+                  <input type = 'text' class = 'inputBox' id = 'trues'><br>
+                    <p>  Вариант Б</p><br>
+                      <input type = 'text' class = 'inputBox' id = 'vB'><br>
+                      <p>  Вариант С</p><br>
+                        <input type = 'text' class = 'inputBox' id = 'vC'><br>
+                        <p>  Вариант Д</p><br>
+                          <input type = 'text' class = 'inputBox' id = 'vD'><br>
+                          <p>  сложность</p><br>
+                            <input type = 'text' class = 'inputBox' id = 'hard'><br>
+            </div>
+      <div id ='buttonOrder'>Оформить заказ</div>
+      </div>
+          <script>
+
+          (async function getElementMenu(){
+              let responseMenu = await fetch('/sendMenu')
+              let products = await responseMenu.json();
+            document.getElementById('_id').value = +products[products.length-1]._id +1
+              await   new Promise((resolve, reject) => setTimeout(resolve, 0));
 
 
-<% include blocks/header.ejs %>
+            //  return items;
+          })()
 
-<div class = 'poppupAdd' id  = 'poppupAdd'>
+          document.getElementById('buttonOrder').onclick = () =>{
 
-</div>
+          let  _id = document.getElementById('_id').value;
+          let  vopros = document.getElementById('vopros').value;
+          let  trues = document.getElementById('trues').value;
+          let  vB = document.getElementById('vB').value;
+          let  vC = document.getElementById('vC').value;
+          let  vD = document.getElementById('vD').value;
+          let  hard = document.getElementById('hard').value;
+              let body = {
+                "_id":_id,
+                "vopros":vopros,
+                "trues":trues,
+                "vB":vB,
+                "vC":vC,
+                "vD":vD,
+                "hard":hard,
+              }
 
-<div class='mainReserv'>
+                    var xhr = new XMLHttpRequest();
+                    xhr.open("POST", '/order', true);
+                    xhr.setRequestHeader('Content-Type', 'application/json');
+                    xhr.send(JSON.stringify(body));
 
-  <div class = left>
-  </div>
-
-    <div class = 'center' id = 'center'>
-
-          <div class = 'mainCenter'>
-
-                  <div class = 'akcii'>
-                    <h1> Акции </h1>
-                        <div class = 'akciiText'>
-                          В связи с началом сессии у группы ИСТзс - 41, <br> скидка на пиво "Heineken" <span class = 'spanPercent'>50</span> процентов!!!<br>
-                          <span class = 'akciiPrice'>
-                            3.00 руб.
-                          </span>
-                          <span class = 'newPrice'>
-                            1.50 руб.
-                          </span>
-                        </div>
-                        <div class = 'akciiGoToMenu'>
-                            <a href = '/menu'>
-                          Сделать заказ
-                        </a>
-                        </div>
-                  </div>
-
-                  <div class = 'delivery'>
-                    <h1> Доставка </h1>
-                        <div class = 'akciiText'>
-                          При заказе, на сумму более 10 рублей, <br>доставка осуществляется бесплатно
-                        </div>
-                        <div class = 'akciiGoToMenu'>
-                            <a href = '/menu'>
-                          Перейти в меню
-                        </a>
-                        </div>
-                  </div>
-
-                  <div class='hits'>
-                      ХИТЫ
-                  </div>
-                  <div class = 'topFood' id='topFood'>
+window.location.reload();
 
 
-                  </div>
-          </div>
-                </div>
-        <div class = right>
-        </div>
-</div>
+              }
+        </script>
     </body>
 </html>
