@@ -33,9 +33,17 @@ app.get('/sendMenu', (req,res) => {
      });
 })
 app.get('/', (req, res) => {
-
   res.render ('country.ejs');
 } );
+
+
+  rez('history', {"hard":"1"})
+      .then((item) =>{
+         console.log(item)
+       })
+         .catch((errorMessage)=>{
+           console.log(errorMessage);
+      });
 
     MongoClient.connect(url, (err, client) => {
     assert.equal(null, err);
@@ -57,33 +65,6 @@ app.get('/', (req, res) => {
     app.get('/1', (req, res) => {
             res.render ('index.ejs');
     } );
-          MongoClient.connect(url, (err, client) => {
-          assert.equal(null, err);
-          const db = client.db(dbName);
-          const collection =db.collection('society');
-            app.post("/order", (req,res) => {
-            //  console.log(req.body)
-              collection.insertOne(req.body,(err,result)=>{
-                        console.log(req.body)
-                                if(err){
-                                  console.log(err);
-                                  res.sendStatus(500);
-                                }
-                                                    res.redirect('/order')
-                            })
-                  })
-          });
-
-
-
-
-
-
-
-
-app.get('/orderItems', (req,res) => {
-          res.send(massivZaskazov);
-        })
 
 
         app.get('/sendMenu', (req,res) => {
