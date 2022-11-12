@@ -20,6 +20,6 @@
     "needle": "^2.4.0",
     "osmosis": "^1.1.10",
     "request": "^2.88.0",
-    "underscore": "^1.9.1"
+    "underscore": "^1.12.1"
   }
 }
